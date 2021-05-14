@@ -1,5 +1,5 @@
 var ctx; //Contexto
-var fps = 30; //Frames por segundo
+let fps = 30; //Frames por segundo
 
 
 //Variables del tablero y tiles
@@ -19,6 +19,12 @@ var negro = '#000';
 var rojo = '#F00';
 var azul = '#00F';
 var verde = '#0F0';
+
+var arrayColores = [ negro, rojo, azul, verde ];
+
+var colorTotal = arrayColores;
+
+var coloresAleatorios = arrayColores[Math.round(Math.random()*colorTotal.length)];
 
 function creaArray2D(f, c) {
 	var obj = new Array(f);
@@ -69,7 +75,7 @@ var Agente = function(x, y, estado) {
 			color = blanco;
 		}
 		else {
-			color = negro;
+			color = coloresAleatorios;
 		}
 
 		ctx.fillStyle = color;
@@ -113,16 +119,16 @@ function inicializaTablero(obj) {
 
 	var estado;
 
-	for (var y = 0; y < filas; y++) {
-		for (var x = 0; x < columnas; x++) {
+	for (let y = 0; y < filas; y++) {
+		for (let x = 0; x < columnas; x++) {
 			estado = Math.floor(Math.random()*2);
 			obj[y][x] = new Agente(x, y, estado);
 		}
 	}
 
 
-	for (var y = 0; y < filas; y++) {
-		for (var x = 0; x < columnas; x++) {
+	for (let y = 0; y < filas; y++) {
+		for (let x = 0; x < columnas; x++) {
 			obj[y][x].addVecinos();
 		}
 	}
@@ -196,23 +202,3 @@ function principal() {
 
 
 	
-//Cambiar colores
-
-function negroArojo() {
-
-	negro = rojo;
-
-}
-
-function negroAazul() {
-
-	negro = azul;
-
-}
-
-
-function negroAverde() {
-
-	negro = verde;
-
-}
